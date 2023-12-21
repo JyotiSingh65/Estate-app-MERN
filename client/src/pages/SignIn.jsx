@@ -23,6 +23,7 @@ export default function SignIn() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
+      console.log(data);
       if (data.success === false) {
         dispatch(signInFailure(data.message));
         return;
@@ -30,7 +31,7 @@ export default function SignIn() {
 
       dispatch(signInSuccess(data));
       navigate('/');
-      console.log(data); // Move this line here
+      
 
     } catch (error) {
       dispatch(signInFailure(error.message));
@@ -61,7 +62,7 @@ export default function SignIn() {
           <span className='text-blue-700 '>Sign up</span>
         </Link>
       </div>
-      {error && <p className='text-red-500'>{error}</p>}
+      {error && <p className='text-red-500'>{error.message}</p>}
     </div>
   );
 }

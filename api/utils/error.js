@@ -5,8 +5,9 @@
 // errorHandler.js
 
 export const errorHandler = (statusCode, message) => {
-    const error = new Error(message); // Assign the message to the error object
+    const error = new Error(); // Assign the message to the error object
     error.statusCode = statusCode;
+    error.message = message;
     return error;
   };
   
