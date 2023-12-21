@@ -2,9 +2,11 @@
 // that are not handled by express
 // read about it again
 
-export const errorHandler = (statusCode,message) => {
-    const error = new Error();
+// errorHandler.js
+
+export const errorHandler = (statusCode, message) => {
+    const error = new Error(message); // Assign the message to the error object
     error.statusCode = statusCode;
-    error.message = message;
     return error;
-};
+  };
+  

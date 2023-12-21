@@ -33,10 +33,8 @@ export const signin = async (req, res, next) => {
         }
         // if the password is valid, generate a token
         const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
-        const { password: userPassword, ...rest } = validUser._doc; // get the user info without the password
-        res.cookie("access_token", token, { httpOnly: true })
-        .status(200)
-        .json(rest) // send the token in a cookie
+        const { password: pass, ...rest } = validUser._doc; // get the user info without the password
+        res.cookie("access_token", token, { httpOnly: true }).status(200).json(rest) // send the token in a cookie
 
     } catch (err) {
         next(err); // pass the error to the error handler middleware
