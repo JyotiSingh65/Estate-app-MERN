@@ -89,5 +89,24 @@ export const  test =  (req, res) => {
         }catch (error) {
           next(error);
         }
+      };
+
+      export const getUser = async (req, res, next) => {
+        const user = await User.findById(req.params.id);
+
+        try {
+
+          if(!user){
+            return next(errorHandler(404, 'User not found'));
+          }
+  
+          const { pass, ...rest } = user._doc;
+          res.status(200).json(rest);
+
+        } catch (error) {
+          next(error);
+        }
+
+        
       }
       
